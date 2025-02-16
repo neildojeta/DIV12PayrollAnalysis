@@ -250,10 +250,10 @@ def wpaste_picture():
                 f'{target_sheet_name}AcceptRateComp': (5, 12),
                 f'{target_sheet_name}CancelRateComp': (5, 20),
                 f'{target_sheet_name}UtilizationComp': (5, 28),
-                f'{target_sheet_name}POnlineHrsComp': (34, 12),
+                f'{target_sheet_name}POnlineHrsComp': (38, 12),
                 # f'{target_sheet_name}PBonusHrsComp': (24, 20),
                 # f'{target_sheet_name}ReqHrsComp': (24, 28)
-                f'{target_sheet_name}ReqHrsComp': (34, 20)
+                f'{target_sheet_name}ReqHrsComp': (38, 20)
             }
             # Build the full path for the comparison file
             comparison_file_path = os.path.join(script_dir, comparison_file)
@@ -343,7 +343,7 @@ def wpaste_picture():
                     try:
                         container = ws_dashboard.Shapes(container_name)
                         # container.Width = table_width + 95  # Add 3.35 cm to width
-                        container.Width = table_width  # Add 3.35 cm to width
+                        container.Width = table_width + 1  # Add 3.35 cm to width
                         # container.Height = table_height + 123  # Add 4.33 cm to height
                         container.Height = table_height + 56  # Add 4.33 cm to height
                         logger.info(f"Resized {container_name} to width: {(container.Width)*0.0352778:.2f} cm, height: {(container.Height)*0.0352778:.2f} cm")

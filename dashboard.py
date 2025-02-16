@@ -322,7 +322,7 @@ def paste_picture():
                     try:
                         container = ws_dashboard.Shapes(container_name)
                         # container.Width = table_width + 95  # Add 3.35 cm to width
-                        container.Width = table_width # Add 3.35 cm to width
+                        container.Width = table_width + 1 # Add 3.35 cm to width
                         # container.Height = table_height + 123  # Add 4.33 cm to height
                         container.Height = table_height + 56  # Add 4.33 cm to height
                         logger.info(f"Resized {container_name} to width: {(container.Width)*0.0352778:.2f} cm, height: {(container.Height)*0.0352778:.2f} cm")
