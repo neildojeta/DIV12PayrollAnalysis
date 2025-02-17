@@ -250,10 +250,10 @@ def wpaste_picture():
                 f'{target_sheet_name}AcceptRateComp': (5, 12),
                 f'{target_sheet_name}CancelRateComp': (5, 20),
                 f'{target_sheet_name}UtilizationComp': (5, 28),
-                f'{target_sheet_name}POnlineHrsComp': (38, 12),
+                f'{target_sheet_name}POnlineHrsComp': (34, 12),
                 # f'{target_sheet_name}PBonusHrsComp': (24, 20),
                 # f'{target_sheet_name}ReqHrsComp': (24, 28)
-                f'{target_sheet_name}ReqHrsComp': (38, 20)
+                f'{target_sheet_name}ReqHrsComp': (34, 20)
             }
             # Build the full path for the comparison file
             comparison_file_path = os.path.join(script_dir, comparison_file)
