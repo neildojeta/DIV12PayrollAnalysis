@@ -150,7 +150,7 @@ def compare_htotalrev(sheet_previous, sheet_latest):
         latest_grouped = sheet_latest.groupby("PARTNER NAME", as_index=False)["Total Rev"].sum()
 
         # Merge both grouped dataframes on "PARTNER NAME"
-        comparison = latest_grouped.merge(previous_grouped, on="PARTNER NAME", how="outer", suffixes=("_PREVIOUS", "_LATEST")).fillna(0)
+        comparison = latest_grouped.merge(previous_grouped, on="PARTNER NAME", how="outer", suffixes=("_LATEST", "_PREVIOUS")).fillna(0)
 
         # Calculate the change in "Total Rev"
         comparison["CHANGE"] = comparison["Total Rev_LATEST"] - comparison["Total Rev_PREVIOUS"]
@@ -180,7 +180,7 @@ def compare_liftlease(sheet_previous, sheet_latest, htotalrev_df):
 
 
         # Merge both dataframes on "PARTNER" and handle missing values with 0
-        comparison = latest_values.merge(previous_values, on="PARTNER", how="outer", suffixes=("_PREVIOUS", "_LATEST")).fillna(0)
+        comparison = latest_values.merge(previous_values, on="PARTNER", how="outer", suffixes=("_LATEST", "_PREVIOUS")).fillna(0)
         comparison = comparison.merge(htotalrev_df, on="PARTNER", how="inner").fillna(0)
 
         # Calculate the change in the "LIFT LEASE TOTAL"
@@ -211,7 +211,7 @@ def compare_violations(sheet_previous, sheet_latest, htotalrev_df):
 
 
         # Merge both dataframes on "PARTNER" and handle missing values with 0
-        comparison = latest_values.merge(previous_values, on="PARTNER", how="outer", suffixes=("_PREVIOUS", "_LATEST")).fillna(0)
+        comparison = latest_values.merge(previous_values, on="PARTNER", how="outer", suffixes=("_LATEST", "_PREVIOUS")).fillna(0)
         comparison = comparison.merge(htotalrev_df, on="PARTNER", how="inner").fillna(0)
 
         # Calculate the change in the "LIFT LEASE TOTAL"
@@ -325,7 +325,7 @@ def compare_acceptance_rate(sheet_previous, sheet_latest, week):
 
         # Merge both datasets
         comparison = latest_values.merge(
-            prev_values, on="PARTNER NAME", how="outer", suffixes=("_PREVIOUS", "_LATEST")
+            prev_values, on="PARTNER NAME", how="outer", suffixes=("_LATEST", "_PREVIOUS")
         ).fillna(0)
 
         # Calculate the change
@@ -360,7 +360,7 @@ def compare_cancellation_rate(sheet_previous, sheet_latest, week):
 
         # Merge both datasets
         comparison = latest_values.merge(
-            prev_values, on="PARTNER NAME", how="outer", suffixes=("_PREVIOUS", "_LATEST")
+            prev_values, on="PARTNER NAME", how="outer", suffixes=("_LATEST", "_PREVIOUS")
         ).fillna(0)
 
         # Calculate the change
@@ -395,7 +395,7 @@ def compare_utilization(sheet_previous, sheet_latest, week):
 
         # Merge both datasets
         comparison = latest_values.merge(
-            prev_values, on="PARTNER NAME", how="outer", suffixes=("_PREVIOUS", "_LATEST")
+            prev_values, on="PARTNER NAME", how="outer", suffixes=("_LATEST", "_PREVIOUS")
         ).fillna(0)
 
         # Calculate the change
@@ -429,13 +429,13 @@ def compare_ReqHours(sheet_previous, sheet_latest, week):
 
         # Merge both datasets
         comparison = latest_values.merge(
-            prev_values, on="PARTNER NAME", how="outer", suffixes=("_PREVIOUS", "_LATEST")
+            prev_values, on="PARTNER NAME", how="outer", suffixes=("_LATEST", "_PREVIOUS")
         ).fillna(0)
 
         # Calculate the change
         comparison["CHANGE"] = comparison["% of Hours to Required_LATEST"] - comparison["% of Hours to Required_PREVIOUS"]
         for col in ["% of Hours to Required_LATEST", "% of Hours to Required_PREVIOUS", "CHANGE"]:
-            comparison[col] = comparison[col].apply(lambda x: float(f"{x:.2f}"))
+            comparison[col] = comparison[col].apply(lambda x: float(f"{x * 100:.2f}"))
 
         # Rename columns
         comparison.columns = ["PARTNER", "LATEST", "PREVIOUS", "CHANGE"]
@@ -461,7 +461,7 @@ def compare_pOnlineHours(sheet_previous, sheet_latest, week):
 
         # Merge both datasets
         comparison = latest_values.merge(
-            prev_values, on="PARTNER NAME", how="outer", suffixes=("_PREVIOUS", "_LATEST")
+            prev_values, on="PARTNER NAME", how="outer", suffixes=("_LATEST", "_PREVIOUS")
         ).fillna(0)
 
         # Calculate the change
@@ -493,7 +493,7 @@ def compare_pBonusHours(sheet_previous, sheet_latest, week):
 
         # Merge both datasets
         comparison = latest_values.merge(
-            prev_values, on="PARTNER NAME", how="outer", suffixes=("_PREVIOUS", "_LATEST")
+            prev_values, on="PARTNER NAME", how="outer", suffixes=("_LATEST", "_PREVIOUS")
         ).fillna(0)
 
         # Calculate the change
